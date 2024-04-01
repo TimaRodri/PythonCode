@@ -1,0 +1,36 @@
+"""
+This program demonstrates one-way decisions logic,
+working with string comparisons, and
+simple Boolean logic
+
+Constants:
+  ON_SALE - the product category on sale
+  DISC_RATE - the amount of the promotional discount
+
+Inputs:
+  product cateory purchased and price of product
+
+Processing:
+  If product purchased is on sale, calculate new price and
+     display message
+
+Output: The purchase price
+"""
+
+# set constants
+ON_SALE_1 = "jackets"
+ON_SALE_2 = "coats"
+DISC_RATE = 0.2
+
+# get user inputs
+purchased_product = input("What product did you purchase? ")
+product_price = float(input("What is the price? "))
+
+# determine if product is on sale
+
+if purchased_product.lower() == ON_SALE_1 or purchased_product.lower() == ON_SALE_2:
+    product_price = product_price * (1-DISC_RATE)
+    print('Congratulations. That product is on sale')
+
+# display final price
+print(f"The price is ${product_price:0.2f}")
