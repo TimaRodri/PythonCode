@@ -1,0 +1,110 @@
+'''
+This program allows the user to manage the registrations for a field trip. The
+names of participants is input into the program as an input file. Names can
+be added to the list, removed from the list, and the list can be viewed.
+This program demonstrates a simple "menu" to allow user to select the action
+to perform
+'''
+
+def main():
+    # open input file
+    trip_file = open("FieldTripNames01.txt","r")
+
+    # create list of field trip participants
+    trip_names = trip_file.readlines()
+    
+    # close input file
+    trip_file.close()   
+
+    # remove newline character from list members
+    for index in range(len(trip_names)):
+        trip_names[index] = trip_names[index].rstrip("\n")
+
+
+    # initialize variable to control processing
+    choice = 0
+
+    # loop for processing
+    while choice != "5":
+
+        #display menu
+        menu()
+
+           # get user's choice of menu option
+        choice = input("Enter the number of your selection: ")
+
+        # decision structure to process menu choice
+        if choice == "1":
+            new_name = input("Enter the name to add to the beginning of list: ")
+
+            trip_names.insert(0, new_name)
+
+            print(f"{new_name} has been added to the top of the list")
+            
+
+        elif choice == "2":
+            new_name = input("Enter the name to add to the end of list: ")
+
+            trip_names.append(new_name)
+            #No possition required for this one ^
+
+            print(f"{new_name} has been added to the end of the list")
+            
+
+        elif choice == "3":
+            name_to_remove = input("Enter name to remove from the list: ")
+            try:
+
+                trip_names.remove(name_to_remove)
+                
+                print(f"{name_to_remove} has been removed from the list")
+
+            except ValueError:
+                print('That name is not in the list')
+
+            
+
+        elif choice == "4":
+            print(trip_names)
+            
+
+        else:
+
+            # save changes and end
+            new_file = open("FieldTripNames01.txt","w")
+
+            for name in trip_names:
+                new_file.write(name + "\n")
+                #\n makes each variable have its own name.
+
+            new_file.close()
+
+            print("Names have been saved")
+
+            
+            # open output file new_names_file = open("FieldTripNames_New.txt", "w")
+
+            #loop to write all names to output file
+            
+
+            # close file
+            
+
+            #closing message
+            
+                
+def menu():
+     # display menu on screen
+    print(" ")
+    print("*********************************")
+    print(" 1 - Add name to top of list")
+    print(" 2 - Add name to end of list")
+    print(" 3 - Remove name from list")
+    print(" 4 - View list")
+    print(" 5 - End the program")
+    print(" ")
+    print("**********************************")
+    print(" ")
+
+#call main
+main()
